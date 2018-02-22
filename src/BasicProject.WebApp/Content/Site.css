@@ -34,3 +34,15 @@ textarea {
         padding: 10px 15px;
     }
 }
+
+.custom-modal {
+    height: 300px;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: initial;
+    display: none;
+    z-index: 9999;
+}

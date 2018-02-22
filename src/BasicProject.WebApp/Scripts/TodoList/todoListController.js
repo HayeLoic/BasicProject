@@ -7,7 +7,11 @@ angular.module("basicProjectApp")
         title: "default",
         isCompleted: false
     });
-
+    $scope.clearCompletedTodosLabel = "Supprimer les tâches cochées";
+    $scope.customModalTitle = $scope.clearCompletedTodosLabel;
+    $scope.customModalMessage = "Voulez-vous vraiment supprimer les tâches cochées ?";
+    $scope.customModalOkButtonLabel = "Oui";
+    $scope.customModalCancelButtonLabel = "Non";
     $scope.markAllSetting = todoListService.getNextMarkAllSetting($scope.markAllSetting);
 
     $scope.addTodo = function () {

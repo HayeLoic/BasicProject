@@ -4,6 +4,15 @@
 
 <h2>@ViewBag.Title</h2>
 <div ng-controller="todoListController" class="row">
+    <div custom-modal
+         id="clearCompletedTodosModal"
+         custom-modal-title="customModalTitle"
+         custom-modal-message="customModalMessage"
+         custom-modal-ok-button-label="customModalOkButtonLabel"
+         custom-modal-cancel-button-label="customModalCancelButtonLabel"
+         ok-function="clearCompletedTodos"
+         role="dialog">
+    </div>
     <form class="todo-form" ng-submit="addTodo()">
         <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo"/>
     </form>
@@ -21,10 +30,10 @@
         <button class="btn btn-info" ng-click="markAllTodos()">
             {{markAllSetting.label}}
         </button>
-        <button class="btn btn-danger pull-right" ng-click="clearCompletedTodos()" ng-show="hasSomeCompletedTodo()">
-            Supprimer les tâches cochées
+        <button class="btn btn-danger pull-right" ng-show="hasSomeCompletedTodo()" data-toggle="modal" data-target="#clearCompletedTodosModal">
+            {{clearCompletedTodosLabel}}
         </button>
     </div>
 </div>
-@Scripts.Render("~/bundles/basicProject/todoList")
+@Scripts.Render("~/bundles/todoList")
 @Styles.Render("~/Content/css/todoList")

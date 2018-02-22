@@ -37,21 +37,22 @@ namespace BasicProject.WebApp
                  "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Scripts/angular.js"));
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-sanitize.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
                 "~/Scripts/underscore.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basicProject").Include(
-                "~/Scripts/BasicProject/basicProject.js"));
+                "~/Scripts/basicProject.js",
+                "~/Scripts/Common/CustomModal/customModal.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/basicProject/sample").Include(
-                "~/Scripts/BasicProject/Sample/sampleDirective.js"));
+            bundles.Add(new ScriptBundle("~/bundles/sample").Include(
+                "~/Scripts/Sample/sampleDirective.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/basicProject/todoList").Include(
-                "~/Scripts/BasicProject/TodoList/todoListService.js",
-                "~/Scripts/BasicProject/TodoList/todoListController.js"
-                ));
+            bundles.Add(new ScriptBundle("~/bundles/todoList").Include(
+                "~/Scripts/TodoList/todoListService.js",
+                "~/Scripts/TodoList/todoListController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css/todoList").Include(
                  "~/Content/todoList.css"));
