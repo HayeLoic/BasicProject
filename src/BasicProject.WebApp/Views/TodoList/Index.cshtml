@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Todo List";
+}
+
+<h2>@ViewBag.Title</h2>
+<div ng-controller="todoListController" class="row">
+    <form class="todo-form" ng-submit="addTodo()">
+        <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo"/>
+    </form>
+    <div ng-show="todos.length">
+        <ul class="list-group">
+            <li ng-repeat="todo in todos" class="list-group-item" ng-class="{isCompleted: todo.isCompleted}">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="todo.isCompleted">{{todo.title}}
+                    </label>
+                    <span class="close glyphicon glyphicon-remove" ng-click="removeTodo(todo)"></span>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-info" ng-click="markAll()">
+            {{markAllSetting.label}}
+        </button>
+        <button class="btn btn-danger pull-right" ng-click="clearCompletedTodos()" ng-show="hasSomeCompletedTodo()">
+            Supprimer les tâches cochées
+        </button>
+    </div>
+</div>
+@Scripts.Render("~/bundles/basicProject/todoList")
+@Styles.Render("~/Content/css/todoList")
