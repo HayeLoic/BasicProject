@@ -5,16 +5,25 @@
 <h2>@ViewBag.Title</h2>
 <div ng-controller="todoListController" class="row">
     <div custom-modal
+         id="removeTodoModal"
+         custom-modal-title="removeTodoModalTitle"
+         custom-modal-message="removeTodoModalMessage"
+         custom-modal-ok-button-label="removeTodoModalOkButtonLabel"
+         custom-modal-cancel-button-label="removeTodoModalCancelButtonLabel"
+         ok-function="removeTodo"
+         role="dialog">
+    </div>
+    <div custom-modal
          id="clearCompletedTodosModal"
-         custom-modal-title="customModalTitle"
-         custom-modal-message="customModalMessage"
-         custom-modal-ok-button-label="customModalOkButtonLabel"
-         custom-modal-cancel-button-label="customModalCancelButtonLabel"
+         custom-modal-title="clearCompletedTodosModalTitle"
+         custom-modal-message="clearCompletedTodosModalMessage"
+         custom-modal-ok-button-label="clearCompletedTodosModalOkButtonLabel"
+         custom-modal-cancel-button-label="clearCompletedTodosModalCancelButtonLabel"
          ok-function="clearCompletedTodos"
          role="dialog">
     </div>
     <form class="todo-form" ng-submit="addTodo()">
-        <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo"/>
+        <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo" />
     </form>
     <div ng-show="todos.length">
         <ul class="list-group">
@@ -23,7 +32,7 @@
                     <label>
                         <input type="checkbox" ng-model="todo.isCompleted">{{todo.title}}
                     </label>
-                    <span class="close glyphicon glyphicon-remove" ng-click="removeTodo(todo)"></span>
+                    <span class="close glyphicon glyphicon-remove" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
                 </div>
             </li>
         </ul>

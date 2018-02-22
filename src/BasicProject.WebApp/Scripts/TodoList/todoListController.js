@@ -8,19 +8,31 @@ angular.module("basicProjectApp")
         isCompleted: false
     });
     $scope.clearCompletedTodosLabel = "Supprimer les tâches cochées";
-    $scope.customModalTitle = $scope.clearCompletedTodosLabel;
-    $scope.customModalMessage = "Voulez-vous vraiment supprimer les tâches cochées ?";
-    $scope.customModalOkButtonLabel = "Oui";
-    $scope.customModalCancelButtonLabel = "Non";
+    var okButtonLabel = "Oui";
+    var cancelButtonLabel = "Non";
+    $scope.removeTodoModalTitle = "Supprimer une tâche";
+    $scope.removeTodoModalMessage = "Voulez-vous vraiment supprimer cette tâche ?";
+    $scope.removeTodoModalOkButtonLabel = okButtonLabel;
+    $scope.removeTodoModalCancelButtonLabel = cancelButtonLabel;
+    $scope.clearCompletedTodosModalTitle = $scope.clearCompletedTodosLabel;
+    $scope.clearCompletedTodosModalMessage = "Voulez-vous vraiment supprimer les tâches cochées ?";
+    $scope.clearCompletedTodosModalOkButtonLabel = okButtonLabel;
+    $scope.clearCompletedTodosModalCancelButtonLabel = cancelButtonLabel;
     $scope.markAllSetting = todoListService.getNextMarkAllSetting($scope.markAllSetting);
+    $scope.removeTodoTarget = null;
+
+    $scope.setRemoveTodo = function (todo) {
+        $scope.removeTodoTarget = todo;
+    };
 
     $scope.addTodo = function () {
         $scope.todos = todoListService.addTodo($scope.todos, $scope.newTodo);
         $scope.newTodo = "";
     };
 
-    $scope.removeTodo = function (todo) {
-        $scope.todos = todoListService.removeTodo($scope.todos, todo);
+    $scope.removeTodo = function () {
+        $scope.todos = todoListService.removeTodo($scope.todos, $scope.removeTodoTarget);
+        $scope.removeTodoTarget = null;
     };
 
     $scope.markAllTodos = function () {
