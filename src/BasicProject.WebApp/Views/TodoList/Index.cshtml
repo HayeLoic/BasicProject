@@ -4,27 +4,44 @@
 
 <h2>@ViewBag.Title</h2>
 <div ng-controller="todoListController" class="row">
+    <div custom-modal
+         id="removeTodoModal"
+         custom-modal-title="removeTodoModalTitle"
+         custom-modal-message="removeTodoModalMessage"
+         custom-modal-ok-button-label="removeTodoModalOkButtonLabel"
+         custom-modal-cancel-button-label="removeTodoModalCancelButtonLabel"
+         ok-function="removeTodo"
+         role="dialog">
+    </div>
+    <div custom-modal
+         id="clearCompletedTodosModal"
+         custom-modal-title="clearCompletedTodosModalTitle"
+         custom-modal-message="clearCompletedTodosModalMessage"
+         custom-modal-ok-button-label="clearCompletedTodosModalOkButtonLabel"
+         custom-modal-cancel-button-label="clearCompletedTodosModalCancelButtonLabel"
+         ok-function="clearCompletedTodos"
+         role="dialog">
+    </div>
     <form class="todo-form" ng-submit="addTodo()">
-        <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo"/>
+        <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo" />
     </form>
     <div ng-show="todos.length">
         <ul class="list-group">
             <li ng-repeat="todo in todos" class="list-group-item" ng-class="{isCompleted: todo.isCompleted}">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="todo.isCompleted">{{todo.title}}
-                    </label>
-                    <span class="close glyphicon glyphicon-remove" ng-click="removeTodo(todo)"></span>
+                <div class="checkbox checkbox-primary">
+                    <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted">
+                    <label for="checkbox{{$id}}">{{todo.title}}</label>
+                    <span class="close glyphicon glyphicon-remove" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
                 </div>
             </li>
         </ul>
-        <button class="btn btn-info" ng-click="markAll()">
+        <button class="btn btn-info" ng-click="markAllTodos()">
             {{markAllSetting.label}}
         </button>
-        <button class="btn btn-danger pull-right" ng-click="clearCompletedTodos()" ng-show="hasSomeCompletedTodo()">
-            Supprimer les tâches cochées
+        <button class="btn btn-danger pull-right" ng-show="hasSomeCompletedTodo()" data-toggle="modal" data-target="#clearCompletedTodosModal">
+            {{clearCompletedTodosLabel}}
         </button>
     </div>
 </div>
-@Scripts.Render("~/bundles/basicProject/todoList")
+@Scripts.Render("~/bundles/todoList")
 @Styles.Render("~/Content/css/todoList")

@@ -1,0 +1,17 @@
+﻿<div class="custom-modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="pull-right">
+                <button class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+            </div>
+            <h4 class="panel-title">{{customModalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+            <span ng-bind-html="customModalMessage"></span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="okFunction()">{{customModalOkButtonLabel}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{customModalCancelButtonLabel}}</button>
+        </div>
+    </div>
+</div>

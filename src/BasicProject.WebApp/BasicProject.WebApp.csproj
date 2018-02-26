@@ -264,21 +264,28 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\todoList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\BasicProject\basicProject.js" />
-    <Content Include="Scripts\BasicProject\Sample\sample.html" />
-    <Content Include="Scripts\BasicProject\TodoList\todoListController.js" />
-    <Content Include="Scripts\BasicProject\Sample\sampleDirective.js" />
-    <Content Include="Scripts\BasicProject\TodoList\todoListService.js" />
+    <Content Include="Scripts\basicProject.js" />
+    <Content Include="Scripts\Common\CustomModal\custom-modal.html" />
+    <Content Include="Scripts\Common\CustomModal\customModal.js" />
+    <Content Include="Scripts\Sample\sample.html" />
+    <Content Include="Scripts\TodoList\todoListController.js" />
+    <Content Include="Scripts\Sample\sampleDirective.js" />
+    <Content Include="Scripts\TodoList\todoListService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -304,6 +311,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
