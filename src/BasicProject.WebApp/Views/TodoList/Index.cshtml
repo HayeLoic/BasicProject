@@ -22,12 +22,16 @@
          ok-function="clearCompletedTodos"
          role="dialog">
     </div>
+    <div>
+        <label for="page-size-select">Nombre d'éléments par page : </label>
+        <select id="page-size-select" class="form-control input-base" ng-model="itemsPerPage" ng-options="option for option in itemsPerPageOptions" ng-change="changeItemsPerPage()"></select>
+    </div>
     <form class="todo-form" ng-submit="addTodo()">
         <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo" />
     </form>
     <div ng-show="todos.length">
         <ul class="list-group">
-            <li ng-repeat="todo in todos" class="list-group-item" ng-class="{isCompleted: todo.isCompleted}">
+            <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item" ng-class="{isCompleted: todo.isCompleted}">
                 <div class="checkbox checkbox-primary">
                     <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted">
                     <label for="checkbox{{$id}}">{{todo.title}}</label>
@@ -41,6 +45,18 @@
         <button class="btn btn-danger pull-right" ng-show="hasSomeCompletedTodo()" data-toggle="modal" data-target="#clearCompletedTodosModal">
             {{clearCompletedTodosLabel}}
         </button>
+    </div>
+    <div class="custom-pagination-wrapper">
+        <div uib-pagination boundary-links="true"
+             total-items="todos.length"
+             ng-model="currentPage"
+             items-per-page="itemsPerPage"
+             class="pagination custom-pagination"
+             previous-text="&lsaquo;"
+             next-text="&rsaquo;"
+             first-text="&laquo;"
+             last-text="&raquo;">
+        </div>
     </div>
 </div>
 @Scripts.Render("~/bundles/todoList")

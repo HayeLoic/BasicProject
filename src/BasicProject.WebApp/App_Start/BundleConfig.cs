@@ -17,6 +17,9 @@ namespace BasicProject.WebApp
                 "~/Scripts/knockout-{version}.js",
                 "~/Scripts/knockout.validation.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/less").Include(
+                "~/Scripts/less.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/sammy-{version}.js",
                 "~/Scripts/app/common.js",
@@ -31,21 +34,29 @@ namespace BasicProject.WebApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
-
+            
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/font-awesome.css",
                  "~/Content/Site.css"));
 
+            Bundle lessBundle = new Bundle("~/Content/Less").IncludeDirectory("~/Content", "*.less");
+            lessBundle.Transforms.Add(new LessTransform());
+            lessBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessBundle);
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
-                "~/Scripts/angular-sanitize.js"));
+                "~/Scripts/angular-sanitize.js",
+                "~/Scripts/angular-ui/ui-bootstrap.js",
+                "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
                 "~/Scripts/underscore.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basicProject").Include(
                 "~/Scripts/basicProject.js",
+                "~/Scripts/Common/StartFrom/startFrom.js",
                 "~/Scripts/Common/CustomModal/customModal.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/sample").Include(
