@@ -31,10 +31,10 @@
     </form>
     <div ng-show="todos.length">
         <ul class="list-group">
-            <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item" ng-class="{isCompleted: todo.isCompleted}">
-                <div class="checkbox checkbox-primary">
+            <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item">
+                <div class="checkbox checkbox-info">
                     <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted">
-                    <label for="checkbox{{$id}}">{{todo.title}}</label>
+                    <label for="checkbox{{$id}}" ng-class="{'completed-todo': todo.isCompleted}">{{todo.title}}</label>
                     <span class="close glyphicon glyphicon-remove" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
                 </div>
             </li>
