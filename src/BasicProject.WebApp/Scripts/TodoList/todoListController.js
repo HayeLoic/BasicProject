@@ -2,11 +2,7 @@
 
 angular.module("basicProjectApp")
 .controller("todoListController", ["$scope", "todoListService", function ($scope, todoListService) {
-    $scope.todos = [];
-    $scope.todos.push({
-        title: "default",
-        isCompleted: false
-    });
+    $scope.todos = todoListService.getTodos();
     $scope.clearCompletedTodosLabel = "Supprimer les tâches cochées";
     var okButtonLabel = "Oui";
     var cancelButtonLabel = "Non";
@@ -20,6 +16,20 @@ angular.module("basicProjectApp")
     $scope.clearCompletedTodosModalCancelButtonLabel = cancelButtonLabel;
     $scope.markAllSetting = todoListService.getNextMarkAllSetting($scope.markAllSetting);
     $scope.removeTodoTarget = null;
+    $scope.itemsPerPageOptions = todoListService.itemsPerPageOptions;
+    $scope.itemsPerPage = todoListService.getItemsPerPage();
+    $scope.currentPage = 1;
+
+    $scope.changeItemsPerPage = function () {
+        todoListService.setItemsPerPage($scope.itemsPerPage);
+        if ($scope.todos) {
+            $scope.goToPage(1);
+        }
+    };
+
+    $scope.goToPage = function (page) {
+        $scope.currentPage = page;
+    };
 
     $scope.setRemoveTodo = function (todo) {
         $scope.removeTodoTarget = todo;

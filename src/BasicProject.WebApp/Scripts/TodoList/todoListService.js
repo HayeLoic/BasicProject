@@ -2,6 +2,8 @@
 
 angular.module("basicProjectApp")
 .service("todoListService", function () {
+    var itemsPerPageOptions = [5, 10, 50];
+    var itemsPerPage = itemsPerPageOptions[0];
     var markAll = {
         value: true,
         label: "Tout cocher"
@@ -13,6 +15,17 @@ angular.module("basicProjectApp")
 
     var getNextMarkAllSetting = function (markAllSetting) {
         return (markAllSetting === markAll) ? unMarkAll : markAll;
+    };
+
+    var getTodos = function () {
+        var todos = [];
+        for (var i = 0; i < 15; i++) {
+            todos.push({
+                title: "default " + i,
+                isCompleted: false
+            });
+        }
+        return todos;
     };
 
     var addTodo = function (todos, newTodo) {
@@ -53,12 +66,24 @@ angular.module("basicProjectApp")
         return _.some(todos, isCompletedTodo);
     };
 
+    var getItemsPerPage = function () {
+        return itemsPerPage;
+    };
+
+    var setItemsPerPage = function (number) {
+        itemsPerPage = number;
+    };
+
     return {
         getNextMarkAllSetting: getNextMarkAllSetting,
+        getTodos: getTodos,
         addTodo: addTodo,
         removeTodo: removeTodo,
         markAllTodos: markAllTodos,
         clearCompletedTodos: clearCompletedTodos,
-        hasSomeCompletedTodo: hasSomeCompletedTodo
+        hasSomeCompletedTodo: hasSomeCompletedTodo,
+        itemsPerPageOptions: itemsPerPageOptions,
+        getItemsPerPage: getItemsPerPage,
+        setItemsPerPage: setItemsPerPage
     };
 });

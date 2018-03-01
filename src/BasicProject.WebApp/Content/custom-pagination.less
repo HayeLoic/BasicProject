@@ -1,0 +1,16 @@
+﻿@custom-pagination-active-bg: #5bc0de;
+
+.custom-pagination-wrapper{
+    text-align: center;
+}
+
+.custom-pagination {
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      background-color: @custom-pagination-active-bg;
+    }
+  }
+}
