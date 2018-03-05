@@ -1,7 +1,10 @@
 ﻿"use strict";
 
 angular.module("basicProjectApp")
-.service("todoListService", function () {
+.service("todoListService", ["$http", function ($http) {
+    var apiUrls = {
+        getTodos: "api/todoList/getTodos"
+    };
     var itemsPerPageOptions = [5, 10, 50];
     var itemsPerPage = itemsPerPageOptions[0];
     var markAll = {
@@ -17,15 +20,11 @@ angular.module("basicProjectApp")
         return (markAllSetting === markAll) ? unMarkAll : markAll;
     };
 
-    var getTodos = function () {
-        var todos = [];
-        for (var i = 0; i < 15; i++) {
-            todos.push({
-                title: "default " + i,
-                isCompleted: false
+    var getTodos = function (callback) {
+        $http.get(apiUrls.getTodos)
+            .then(function (result) {
+                callback(result.data);
             });
-        }
-        return todos;
     };
 
     var addTodo = function (todos, newTodo) {
@@ -86,4 +85,4 @@ angular.module("basicProjectApp")
         getItemsPerPage: getItemsPerPage,
         setItemsPerPage: setItemsPerPage
     };
-});
+}]);
