@@ -65,7 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PoleEmploi.PushData.Library\BasicProject.Library.csproj">
+    <ProjectReference Include="..\BasicProject.Library\BasicProject.Library.csproj">
       <Project>{817ad511-69d0-4967-a239-9cf6629d2759}</Project>
       <Name>BasicProject.Library</Name>
     </ProjectReference>
