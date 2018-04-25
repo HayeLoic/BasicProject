@@ -8,6 +8,7 @@ using BasicProject.DataAccess.Repositories;
 
 namespace BasicProject.WebApp.ApiControllers
 {
+    [RoutePrefix("api/todoList")]
     public class TodoListController : ApiController
     {
         private readonly ITodoService todoService;
@@ -17,12 +18,13 @@ namespace BasicProject.WebApp.ApiControllers
             this.todoService = new TodoService(new TodoRepository(new MemoryCacheService()));
         }
 
+        [Route("getTodos")]
         [HttpGet]
         public IEnumerable<Todo> GetTodos()
         {
             try
             {
-                return this.todoService.GetTodosFromCache();
+                return this.todoService.GetTodos();
             }
             catch (Exception exception)
             {
@@ -31,8 +33,9 @@ namespace BasicProject.WebApp.ApiControllers
             }
         }
 
+        [Route("insertTodo")]
         [HttpPost]
-        public void InsertTodo(Todo todo)
+        public void InsertTodo([FromBody]Todo todo)
         {
             try
             {
@@ -44,8 +47,9 @@ namespace BasicProject.WebApp.ApiControllers
             }
         }
 
+        [Route("updateTodo")]
         [HttpPost]
-        public void UpdateTodo(Todo todo)
+        public void UpdateTodo([FromBody]Todo todo)
         {
             try
             {
@@ -55,11 +59,11 @@ namespace BasicProject.WebApp.ApiControllers
             {
                 Debug.Write(exception);
             }
-
         }
 
+        [Route("deleteTodo")]
         [HttpPost]
-        public void DeleteTodo(int todoId)
+        public void DeleteTodo([FromBody]int todoId)
         {
             try
             {
@@ -69,7 +73,6 @@ namespace BasicProject.WebApp.ApiControllers
             {
                 Debug.Write(exception);
             }
-
         }
     }
 }

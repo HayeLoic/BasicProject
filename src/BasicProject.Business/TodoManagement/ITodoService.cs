@@ -4,7 +4,7 @@ namespace BasicProject.Business.TodoManagement
 {
     public interface ITodoService
     {
-        List<Todo> GetTodosFromCache();
+        List<Todo> GetTodos();
         void InsertTodo(Todo todo);
         void UpdateTodo(Todo todo);
         void DeleteTodo(int todoId);

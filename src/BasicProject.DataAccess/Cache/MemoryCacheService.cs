@@ -23,11 +23,16 @@ namespace BasicProject.DataAccess.Cache
             return item;
         }
 
-        public T AddOrGetExisting<T>(string key, Func<T> valueFactory)
+        public T AddOrGetExisting<T>(string key, Func<T> valueFactory, TimeSpan expiration)
         {
-            var newValue = new Lazy<T>(valueFactory);
-            var value = (Lazy<T>)cache.AddOrGetExisting(key, newValue, ObjectCache.InfiniteAbsoluteExpiration);
-            return (value ?? newValue).Value;
+            var value = this.Get<T>(key);
+            if (value == null)
+            {
+                var newValue = valueFactory();
+                this.InsertCache(key, newValue, expiration);
+                return newValue;
+            }
+            return value;
         }
 
         public T InsertCache<T>(string key, T objectToCache, TimeSpan expiration)

@@ -19,7 +19,7 @@ namespace BasicProject.DataAccess.Repositories
 
         public IEnumerable<TodoDto> GetTodos()
         {
-            return this.memoryCacheService.AddOrGetExisting(TodosKey, GenerateTodos);
+            return this.memoryCacheService.AddOrGetExisting(TodosKey, GenerateTodos, DateTime.Now.AddSeconds(CacheDurationInSeconds).TimeOfDay);
         }
 
         public void InsertTodo(TodoDto todoDto)

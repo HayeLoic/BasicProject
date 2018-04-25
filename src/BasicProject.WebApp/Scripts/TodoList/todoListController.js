@@ -34,14 +34,18 @@ angular.module("basicProjectApp")
         $scope.todos = todos;
     };
 
-    $scope.todos = todoListService.getTodos(setTodos);
+    var getTodos = function () {
+        $scope.todos = todoListService.getTodos(setTodos);
+    };
+
+    getTodos();
 
     $scope.setRemoveTodo = function (todo) {
         $scope.removeTodoTarget = todo;
     };
 
     $scope.addTodo = function () {
-        $scope.todos = todoListService.addTodo($scope.todos, $scope.newTodo);
+        $scope.todos = todoListService.addTodo($scope.newTodo, getTodos);
         $scope.newTodo = "";
     };
 

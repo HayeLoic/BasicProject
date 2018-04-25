@@ -3,7 +3,10 @@
 angular.module("basicProjectApp")
 .service("todoListService", ["$http", function ($http) {
     var apiUrls = {
-        getTodos: "api/todoList/getTodos"
+        getTodos: "api/todoList/getTodos",
+        insertTodo: "api/todoList/insertTodo",
+        updateTodo: "api/todoList/updateTodo",
+        deleteTodo: "api/todoList/deleteTodo"
     };
     var itemsPerPageOptions = [5, 10, 50];
     var itemsPerPage = itemsPerPageOptions[0];
@@ -27,16 +30,19 @@ angular.module("basicProjectApp")
             });
     };
 
-    var addTodo = function (todos, newTodo) {
-        newTodo = newTodo.trim();
-        if (!newTodo.length) {
-            return todos;
+    var addTodo = function (todoTitle, callback) {
+        todoTitle = todoTitle.trim();
+        if (todoTitle.length) {
+            var todo = {
+                id: 0,
+                title: todoTitle,
+                isCompleted: false
+            };
+            $http.post(apiUrls.insertTodo, todo)
+                .then(function () {
+                    callback();
+                });
         }
-        todos.push({
-            title: newTodo,
-            isCompleted: false
-        });
-        return todos;
     };
 
     var removeTodo = function (todos, todo) {

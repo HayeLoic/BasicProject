@@ -14,7 +14,7 @@ namespace BasicProject.Business.TodoManagement
             this.todoRepository = todoRepository;
         }
 
-        public List<Todo> GetTodosFromCache()
+        public List<Todo> GetTodos()
         {
             IEnumerable<TodoDto> todoDtos = this.todoRepository.GetTodos();
             return todoDtos.Select(todoDto => new Todo
