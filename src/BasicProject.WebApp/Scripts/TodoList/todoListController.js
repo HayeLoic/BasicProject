@@ -50,7 +50,7 @@ angular.module("basicProjectApp")
     };
 
     $scope.removeTodo = function () {
-        $scope.todos = todoListService.removeTodo($scope.todos, $scope.removeTodoTarget);
+        $scope.todos = todoListService.removeTodo($scope.removeTodoTarget, getTodos);
         $scope.removeTodoTarget = null;
     };
 
@@ -60,7 +60,7 @@ angular.module("basicProjectApp")
     };
 
     $scope.clearCompletedTodos = function () {
-        $scope.todos = todoListService.clearCompletedTodos($scope.todos);
+        $scope.todos = todoListService.clearCompletedTodos($scope.todos, getTodos);
     };
 
     $scope.hasSomeCompletedTodo = function () {

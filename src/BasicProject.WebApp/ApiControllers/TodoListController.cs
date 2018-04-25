@@ -74,5 +74,22 @@ namespace BasicProject.WebApp.ApiControllers
                 Debug.Write(exception);
             }
         }
+
+        [Route("deleteTodos")]
+        [HttpPost]
+        public void DeleteTodo([FromBody]List<int> todoIds)
+        {
+            try
+            {
+                foreach (int id in todoIds)
+                {
+                    this.todoService.DeleteTodo(id);
+                }
+            }
+            catch (Exception exception)
+            {
+                Debug.Write(exception);
+            }
+        }
     }
 }
