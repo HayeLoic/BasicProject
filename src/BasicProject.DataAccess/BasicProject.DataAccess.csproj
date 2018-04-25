@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\IMemoryCacheService.cs" />
+    <Compile Include="Cache\MemoryCacheService.cs" />
     <Compile Include="Dto\TodoDto.cs" />
     <Compile Include="Repositories\ITodoRepository.cs" />
     <Compile Include="Repositories\TodoRepository.cs" />
