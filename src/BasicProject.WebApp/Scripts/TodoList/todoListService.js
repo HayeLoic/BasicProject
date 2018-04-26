@@ -5,7 +5,6 @@ angular.module("basicProjectApp")
     var apiUrls = {
         getTodos: "api/todoList/getTodos",
         insertTodo: "api/todoList/insertTodo",
-        updateTodo: "api/todoList/updateTodo",
         deleteTodo: "api/todoList/deleteTodo",
         deleteTodos: "api/todoList/deleteTodos"
     };

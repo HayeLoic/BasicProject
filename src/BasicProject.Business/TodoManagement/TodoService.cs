@@ -36,17 +36,6 @@ namespace BasicProject.Business.TodoManagement
             this.todoRepository.InsertTodo(todoDto);
         }
 
-        public void UpdateTodo(Todo todo)
-        {
-            TodoDto todoDto = new TodoDto
-            {
-                Id = todo.Id,
-                Title = todo.Title,
-                IsCompleted = todo.IsCompleted
-            };
-            this.todoRepository.UpdateTodo(todoDto);
-        }
-
         public void DeleteTodo(int todoId)
         {
             this.todoRepository.DeleteTodo(todoId);

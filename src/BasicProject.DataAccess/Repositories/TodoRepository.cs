@@ -29,18 +29,6 @@ namespace BasicProject.DataAccess.Repositories
             this.memoryCacheService.InsertCache(TodosKey, todoDtos, DateTime.Now.AddSeconds(CacheDurationInSeconds).TimeOfDay);
         }
 
-        public void UpdateTodo(TodoDto updatedTodoDto)
-        {
-            List<TodoDto> todoDtos = this.GetTodos().ToList();
-            TodoDto todoDtoToRemove = todoDtos.FirstOrDefault(todoDto => todoDto.Id == updatedTodoDto.Id);
-            if (todoDtoToRemove != null)
-            {
-                todoDtos.Remove(todoDtoToRemove);
-                todoDtos.Add(updatedTodoDto);
-            }
-            this.memoryCacheService.InsertCache(TodosKey, todoDtos, DateTime.Now.AddSeconds(CacheDurationInSeconds).TimeOfDay);
-        }
-
         public void DeleteTodo(int todoDtoId)
         {
             List<TodoDto> todoDtos = this.GetTodos().ToList();
