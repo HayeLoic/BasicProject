@@ -1,7 +1,13 @@
 ﻿"use strict";
 
 angular.module("basicProjectApp")
-.service("todoListService", function () {
+.service("todoListService", ["$http", function ($http) {
+    var apiUrls = {
+        getTodos: "api/todoList/getTodos",
+        insertTodo: "api/todoList/insertTodo",
+        deleteTodo: "api/todoList/deleteTodo",
+        deleteTodos: "api/todoList/deleteTodos"
+    };
     var itemsPerPageOptions = [5, 10, 50];
     var itemsPerPage = itemsPerPageOptions[0];
     var markAll = {
@@ -17,32 +23,33 @@ angular.module("basicProjectApp")
         return (markAllSetting === markAll) ? unMarkAll : markAll;
     };
 
-    var getTodos = function () {
-        var todos = [];
-        for (var i = 0; i < 15; i++) {
-            todos.push({
-                title: "default " + i,
-                isCompleted: false
+    var getTodos = function (callback) {
+        $http.get(apiUrls.getTodos)
+            .then(function (result) {
+                callback(result.data);
             });
-        }
-        return todos;
     };
 
-    var addTodo = function (todos, newTodo) {
-        newTodo = newTodo.trim();
-        if (!newTodo.length) {
-            return todos;
+    var addTodo = function (todoTitle, callback) {
+        todoTitle = todoTitle.trim();
+        if (todoTitle.length) {
+            var todo = {
+                id: 0,
+                title: todoTitle,
+                isCompleted: false
+            };
+            $http.post(apiUrls.insertTodo, todo)
+                .then(function () {
+                    callback();
+                });
         }
-        todos.push({
-            title: newTodo,
-            isCompleted: false
-        });
-        return todos;
     };
 
-    var removeTodo = function (todos, todo) {
-        todos.splice(todos.indexOf(todo), 1);
-        return todos;
+    var removeTodo = function (todo, callback) {
+        $http.post(apiUrls.deleteTodo, todo.id)
+            .then(function () {
+                callback();
+            });
     };
 
     var markAllTodos = function (todos, markAllSetting) {
@@ -52,10 +59,17 @@ angular.module("basicProjectApp")
         return todos;
     };
 
-    var clearCompletedTodos = function (todos) {
-        return todos.filter(function (todo) {
-            return !todo.isCompleted;
+    var clearCompletedTodos = function (todos, callback) {
+        var todoIds = [];
+        todos.forEach(function (todo) {
+            if (todo.isCompleted) {
+                todoIds.push(todo.id);
+            }
         });
+        $http.post(apiUrls.deleteTodos, todoIds)
+            .then(function () {
+                callback();
+            });
     };
 
     var isCompletedTodo = function (todo) {
@@ -86,4 +100,4 @@ angular.module("basicProjectApp")
         getItemsPerPage: getItemsPerPage,
         setItemsPerPage: setItemsPerPage
     };
-});
+}]);

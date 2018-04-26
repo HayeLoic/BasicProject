@@ -1,3 +1,0 @@
-~/Install/Schema/schema_create_tables.sql
-~/Install/Data/data_initialize_tables.sql
-~/Install/StoredProcedure/GetPlatformDetails.sql

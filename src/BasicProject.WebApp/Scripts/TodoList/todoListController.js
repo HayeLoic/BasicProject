@@ -2,7 +2,6 @@
 
 angular.module("basicProjectApp")
 .controller("todoListController", ["$scope", "todoListService", function ($scope, todoListService) {
-    $scope.todos = todoListService.getTodos();
     $scope.clearCompletedTodosLabel = "Supprimer les tâches cochées";
     var okButtonLabel = "Oui";
     var cancelButtonLabel = "Non";
@@ -31,17 +30,27 @@ angular.module("basicProjectApp")
         $scope.currentPage = page;
     };
 
+    var setTodos = function (todos) {
+        $scope.todos = todos;
+    };
+
+    var getTodos = function () {
+        $scope.todos = todoListService.getTodos(setTodos);
+    };
+
+    getTodos();
+
     $scope.setRemoveTodo = function (todo) {
         $scope.removeTodoTarget = todo;
     };
 
     $scope.addTodo = function () {
-        $scope.todos = todoListService.addTodo($scope.todos, $scope.newTodo);
+        $scope.todos = todoListService.addTodo($scope.newTodo, getTodos);
         $scope.newTodo = "";
     };
 
     $scope.removeTodo = function () {
-        $scope.todos = todoListService.removeTodo($scope.todos, $scope.removeTodoTarget);
+        $scope.todos = todoListService.removeTodo($scope.removeTodoTarget, getTodos);
         $scope.removeTodoTarget = null;
     };
 
@@ -51,7 +60,7 @@ angular.module("basicProjectApp")
     };
 
     $scope.clearCompletedTodos = function () {
-        $scope.todos = todoListService.clearCompletedTodos($scope.todos);
+        $scope.todos = todoListService.clearCompletedTodos($scope.todos, getTodos);
     };
 
     $scope.hasSomeCompletedTodo = function () {

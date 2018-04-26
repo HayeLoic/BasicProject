@@ -211,6 +211,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\TodoListController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\LessTransform.cs" />
@@ -397,6 +398,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasicProject.Business\BasicProject.Business.csproj">
+      <Project>{4a014526-0d5f-4ed3-8d4b-4945946fe4b5}</Project>
+      <Name>BasicProject.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicProject.DataAccess\BasicProject.DataAccess.csproj">
+      <Project>{f8b2fb24-5804-4e9b-b351-ac44e0b92b96}</Project>
+      <Name>BasicProject.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
