@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BasicProject.DataAccess.Dto;
 using BasicProject.Library.Configuration;
-using BasicProject.Library.Dto;
 using Dapper;
 
-namespace BasicProject.Library.Repository
+namespace BasicProject.DataAccess.Repositories
 {
     public class Repository : IRepository
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BasicProject.Library.Attributes
+namespace BasicProject.Helpers.Library.Attributes
 {
     public sealed class IgnoreAttribute : Attribute { }
 }

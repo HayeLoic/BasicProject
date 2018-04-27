@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BasicProject.Business.TodoManagement
+namespace BasicProject.Library.Business.TodoManagement
 {
     public interface ITodoService
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using BasicProject.DataAccess.Dto;
+using BasicProject.DataAccess.Repositories;
 using BasicProject.Library.Configuration;
-using BasicProject.Library.Dto;
-using BasicProject.Library.Repository;
 using Ninject;
 using Ninject.Parameters;
 

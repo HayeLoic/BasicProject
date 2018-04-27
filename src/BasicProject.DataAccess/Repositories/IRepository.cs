@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BasicProject.Library.Dto;
+using BasicProject.DataAccess.Dto;
 
-namespace BasicProject.Library.Repository
+namespace BasicProject.DataAccess.Repositories
 {
     public interface IRepository
     {

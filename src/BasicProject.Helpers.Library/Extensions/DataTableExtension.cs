@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using BasicProject.Library.Attributes;
+using BasicProject.Helpers.Library.Attributes;
 
-namespace BasicProject.Library.Extensions
+namespace BasicProject.Helpers.Library.Extensions
 {
     public static class DataTableExtension
     {

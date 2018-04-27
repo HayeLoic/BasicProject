@@ -1,4 +1,4 @@
-﻿namespace BasicProject.Business.TodoManagement
+﻿namespace BasicProject.Library.Business.TodoManagement
 {
     public class Todo
     {

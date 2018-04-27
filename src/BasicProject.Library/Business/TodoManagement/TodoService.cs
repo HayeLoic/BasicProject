@@ -3,7 +3,7 @@ using System.Linq;
 using BasicProject.DataAccess.Dto;
 using BasicProject.DataAccess.Repositories;
 
-namespace BasicProject.Business.TodoManagement
+namespace BasicProject.Library.Business.TodoManagement
 {
     public class TodoService : ITodoService
     {

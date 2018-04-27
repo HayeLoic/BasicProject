@@ -2,10 +2,10 @@
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using BasicProject.Library.Attributes;
+using BasicProject.Helpers.Library.Attributes;
 using Dapper;
 
-namespace BasicProject.Library.Extensions
+namespace BasicProject.Helpers.Library.Extensions
 {
     public static class DapperExtensions
     {
