@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace BasicProject.Library.Helpers
+namespace BasicProject.Helpers.Library.Helpers
 {
     public class Retry
     {

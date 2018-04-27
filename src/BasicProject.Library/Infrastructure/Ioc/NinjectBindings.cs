@@ -1,5 +1,8 @@
-﻿using BasicProject.Library.Configuration;
-using BasicProject.Library.Repository;
+﻿using BasicProject.DataAccess.Cache;
+using BasicProject.DataAccess.Configuration;
+using BasicProject.DataAccess.Repositories;
+using BasicProject.Library.Business.TodoManagement;
+using BasicProject.Library.Configuration;
 using Ninject.Modules;
 
 namespace BasicProject.Library.Infrastructure.Ioc
@@ -10,7 +13,10 @@ namespace BasicProject.Library.Infrastructure.Ioc
         {
             Bind<IDatabaseConfiguration>().To<DatabaseConfiguration>();
             Bind<IApplicationSettings>().To<ApplicationSettings>();
-            Bind<IRepository>().To<BasicProject.Library.Repository.Repository>();
+            Bind<ITodoService>().To<TodoService>();
+            Bind<IMemoryCacheService>().To<MemoryCacheService>();
+            Bind<ITodoRepository>().To<TodoRepository>();
+            Bind<IRepository>().To<Repository>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
+using BasicProject.Library.Configuration;
 
-namespace BasicProject.Library.Configuration
+namespace BasicProject.DataAccess.Configuration
 {
     public class DatabaseConfiguration: IDatabaseConfiguration
     {

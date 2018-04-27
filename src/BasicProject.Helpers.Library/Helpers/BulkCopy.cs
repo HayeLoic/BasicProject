@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace BasicProject.Library.Helpers
+namespace BasicProject.Helpers.Library.Helpers
 {
     public class BulkCopy
     {

@@ -1,4 +1,4 @@
-﻿namespace BasicProject.Library.Dto
+﻿namespace BasicProject.DataAccess.Dto
 {
     public class SampleObject
     {

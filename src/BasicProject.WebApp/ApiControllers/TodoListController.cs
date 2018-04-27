@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Http;
-using BasicProject.Business.TodoManagement;
-using BasicProject.DataAccess.Cache;
-using BasicProject.DataAccess.Repositories;
+using BasicProject.Library.Business.TodoManagement;
 
 namespace BasicProject.WebApp.ApiControllers
 {
@@ -13,9 +11,9 @@ namespace BasicProject.WebApp.ApiControllers
     {
         private readonly ITodoService todoService;
 
-        public TodoListController()
+        public TodoListController(ITodoService todoService)
         {
-            this.todoService = new TodoService(new TodoRepository(new MemoryCacheService()));
+            this.todoService = todoService;
         }
 
         [Route("getTodos")]
