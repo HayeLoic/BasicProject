@@ -22,7 +22,8 @@ namespace BasicProject.Library.Business.TodoManagement
                 Id = todoDto.Id,
                 Title = todoDto.Title,
                 IsCompleted = todoDto.IsCompleted
-            }).ToList();
+            })
+            .OrderBy(todo => todo.Id).ToList();
         }
 
         public void InsertTodo(Todo todo)
@@ -34,6 +35,17 @@ namespace BasicProject.Library.Business.TodoManagement
                 IsCompleted = todo.IsCompleted
             };
             this.todoRepository.InsertTodo(todoDto);
+        }
+
+        public void UpdateTodo(Todo todo)
+        {
+            TodoDto todoDto = new TodoDto
+            {
+                Id = todo.Id,
+                Title = todo.Title,
+                IsCompleted = todo.IsCompleted
+            };
+            this.todoRepository.UpdateTodo(todoDto);
         }
 
         public void DeleteTodo(int todoId)

@@ -6,6 +6,7 @@ namespace BasicProject.Library.Business.TodoManagement
     {
         List<Todo> GetTodos();
         void InsertTodo(Todo todo);
+        void UpdateTodo(Todo todo);
         void DeleteTodo(int todoId);
     }
 }

@@ -31,11 +31,17 @@
     </form>
     <div ng-show="todos.length">
         <ul class="list-group">
-            <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item">
-                <div class="checkbox checkbox-info">
-                    <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted">
+            <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item todo-element">
+                <div class="checkbox checkbox-info" ng-show="!isUpdating(todo)">
+                    <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted"/>
                     <label for="checkbox{{$id}}" ng-class="{'completed-todo': todo.isCompleted}">{{todo.title}}</label>
-                    <span class="close glyphicon glyphicon-remove" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
+                    <span class="close glyphicon glyphicon-remove action-todo-button" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
+                    <span class="close glyphicon glyphicon-pencil" ng-show="!isInUpdateMode()" ng-click="setUpdatingTodo(todo)"></span>
+                </div>
+                <div ng-show="isUpdating(todo)">
+                    <input class="form-control update-todo" ng-model="todo.title" />
+                    <span class="close glyphicon glyphicon-remove-circle action-todo-button update-todo-button" ng-click="rollbackUpdatingTodo(todo)"></span>
+                    <span class="close glyphicon glyphicon-ok-circle update-todo-button" ng-click="updateTodo(todo)"></span>
                 </div>
             </li>
         </ul>

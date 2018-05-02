@@ -45,6 +45,20 @@ namespace BasicProject.WebApp.ApiControllers
             }
         }
 
+        [Route("updateTodo")]
+        [HttpPost]
+        public void UpdateTodo([FromBody]Todo todo)
+        {
+            try
+            {
+                this.todoService.UpdateTodo(todo);
+            }
+            catch (Exception exception)
+            {
+                Debug.Write(exception);
+            }
+        }
+
         [Route("deleteTodo")]
         [HttpPost]
         public void DeleteTodo([FromBody]int todoId)

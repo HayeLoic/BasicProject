@@ -18,6 +18,7 @@ angular.module("basicProjectApp")
     $scope.itemsPerPageOptions = todoListService.itemsPerPageOptions;
     $scope.itemsPerPage = todoListService.getItemsPerPage();
     $scope.currentPage = 1;
+    $scope.updatingTodo = null;
 
     $scope.changeItemsPerPage = function () {
         todoListService.setItemsPerPage($scope.itemsPerPage);
@@ -49,6 +50,11 @@ angular.module("basicProjectApp")
         $scope.newTodo = "";
     };
 
+    $scope.updateTodo = function (todo) {
+        $scope.todos = todoListService.updateTodo(todo, getTodos);
+        $scope.updatingTodo = null;
+    };
+
     $scope.removeTodo = function () {
         $scope.todos = todoListService.removeTodo($scope.removeTodoTarget, getTodos);
         $scope.removeTodoTarget = null;
@@ -65,5 +71,22 @@ angular.module("basicProjectApp")
 
     $scope.hasSomeCompletedTodo = function () {
         return todoListService.hasSomeCompletedTodo($scope.todos);
+    };
+
+    $scope.isInUpdateMode = function () {
+        return todoListService.isInUpdateMode($scope.updatingTodo);
+    };
+
+    $scope.isUpdating = function (todo) {
+        return todoListService.isUpdating($scope.updatingTodo, todo);
+    };
+
+    $scope.setUpdatingTodo = function (todo) {
+        $scope.updatingTodo = JSON.parse(JSON.stringify(todo));
+    };
+
+    $scope.rollbackUpdatingTodo = function (todo) {
+        todo.title = $scope.updatingTodo.title;
+        $scope.updatingTodo = null;
     };
 }]);

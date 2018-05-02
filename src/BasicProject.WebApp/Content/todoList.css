@@ -6,3 +6,19 @@
 .completed-todo {
     text-decoration: line-through;
 }
+
+.todo-element {
+    height: 60px;
+}
+
+.update-todo {
+    display: inline;
+}
+
+.action-todo-button {
+    padding-left: 10px;
+}
+
+.update-todo-button {
+    padding-top: 10px;
+}

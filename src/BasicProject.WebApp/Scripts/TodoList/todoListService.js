@@ -5,6 +5,7 @@ angular.module("basicProjectApp")
     var apiUrls = {
         getTodos: "api/todoList/getTodos",
         insertTodo: "api/todoList/insertTodo",
+        updateTodo: "api/todoList/updateTodo",
         deleteTodo: "api/todoList/deleteTodo",
         deleteTodos: "api/todoList/deleteTodos"
     };
@@ -39,6 +40,15 @@ angular.module("basicProjectApp")
                 isCompleted: false
             };
             $http.post(apiUrls.insertTodo, todo)
+                .then(function () {
+                    callback();
+                });
+        }
+    };
+
+    var updateTodo = function (todo, callback) {
+        if (todo.title.trim()) {
+            $http.post(apiUrls.updateTodo, todo)
                 .then(function () {
                     callback();
                 });
@@ -80,6 +90,18 @@ angular.module("basicProjectApp")
         return _.some(todos, isCompletedTodo);
     };
 
+    var isInUpdateMode = function (updatingTodo) {
+        return !!updatingTodo;
+    };
+    
+    var isUpdating = function (updatingTodo, todo) {
+        if (updatingTodo && updatingTodo.id === todo.id) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     var getItemsPerPage = function () {
         return itemsPerPage;
     };
@@ -92,10 +114,13 @@ angular.module("basicProjectApp")
         getNextMarkAllSetting: getNextMarkAllSetting,
         getTodos: getTodos,
         addTodo: addTodo,
+        updateTodo: updateTodo,
         removeTodo: removeTodo,
         markAllTodos: markAllTodos,
         clearCompletedTodos: clearCompletedTodos,
         hasSomeCompletedTodo: hasSomeCompletedTodo,
+        isInUpdateMode: isInUpdateMode,
+        isUpdating: isUpdating,
         itemsPerPageOptions: itemsPerPageOptions,
         getItemsPerPage: getItemsPerPage,
         setItemsPerPage: setItemsPerPage
