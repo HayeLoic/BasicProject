@@ -22,3 +22,11 @@
 .update-todo-button {
     padding-top: 10px;
 }
+
+.order-todos {
+    margin-bottom: 10px;
+}
+
+.order-todos-label {
+    font-weight: bold;
+}

@@ -9,6 +9,9 @@ angular.module("basicProjectApp")
         deleteTodo: "api/todoList/deleteTodo",
         deleteTodos: "api/todoList/deleteTodos"
     };
+    var directionAscending = "directionAscending";
+    var directionDescending = "directionDescending";
+    var direction = directionDescending;
     var itemsPerPageOptions = [5, 10, 50];
     var itemsPerPage = itemsPerPageOptions[0];
     var markAll = {
@@ -93,13 +96,39 @@ angular.module("basicProjectApp")
     var isInUpdateMode = function (updatingTodo) {
         return !!updatingTodo;
     };
-    
+
     var isUpdating = function (updatingTodo, todo) {
         if (updatingTodo && updatingTodo.id === todo.id) {
             return true;
         } else {
             return false;
         }
+    };
+
+    var reverseDirection = function () {
+        if (direction === directionAscending) {
+            direction = directionDescending;
+        } else {
+            direction = directionAscending;
+        }
+    };
+
+    var reverseTodos = function (todos) {
+        reverseDirection();
+        if (direction === directionDescending) {
+            todos = todos.reverse();
+        }
+        return todos;
+    };
+
+    var orderById = function (todos) {
+        var sortedTodos = _.sortBy(todos, "id");
+        return reverseTodos(sortedTodos);
+    };
+
+    var orderByTitle = function (todos) {
+        var sortedTodos = _.sortBy(todos, "title");
+        return reverseTodos(sortedTodos);
     };
 
     var getItemsPerPage = function () {
@@ -121,6 +150,8 @@ angular.module("basicProjectApp")
         hasSomeCompletedTodo: hasSomeCompletedTodo,
         isInUpdateMode: isInUpdateMode,
         isUpdating: isUpdating,
+        orderById: orderById,
+        orderByTitle: orderByTitle,
         itemsPerPageOptions: itemsPerPageOptions,
         getItemsPerPage: getItemsPerPage,
         setItemsPerPage: setItemsPerPage

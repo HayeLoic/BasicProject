@@ -30,10 +30,15 @@
         <input class="form-control" placeholder="Que devez-vous faire ?" ng-model="newTodo" />
     </form>
     <div ng-show="todos.length">
+        <div class="order-todos">
+            <span class="order-todos-label">Tier par :</span>
+            <button type="button" class="btn btn-default" ng-click="orderTodos(orderById)">Date de création</button>
+            <button type="button" class="btn btn-default" ng-click="orderTodos(orderByTitle)">Nom</button>
+        </div>
         <ul class="list-group">
             <li ng-repeat="todo in todos | startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage" class="list-group-item todo-element">
                 <div class="checkbox checkbox-info" ng-show="!isUpdating(todo)">
-                    <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted"/>
+                    <input id="checkbox{{$id}}" type="checkbox" ng-model="todo.isCompleted" />
                     <label for="checkbox{{$id}}" ng-class="{'completed-todo': todo.isCompleted}">{{todo.title}}</label>
                     <span class="close glyphicon glyphicon-remove action-todo-button" ng-click="setRemoveTodo(todo)" data-toggle="modal" data-target="#removeTodoModal"></span>
                     <span class="close glyphicon glyphicon-pencil" ng-show="!isInUpdateMode()" ng-click="setUpdatingTodo(todo)"></span>
@@ -52,7 +57,7 @@
             {{clearCompletedTodosLabel}}
         </button>
     </div>
-    <div class="custom-pagination-wrapper">
+    <div class="custom-pagination-wrapper" ng-show="todos.length">
         <div uib-pagination boundary-links="true"
              total-items="todos.length"
              ng-model="currentPage"

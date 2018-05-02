@@ -19,6 +19,8 @@ angular.module("basicProjectApp")
     $scope.itemsPerPage = todoListService.getItemsPerPage();
     $scope.currentPage = 1;
     $scope.updatingTodo = null;
+    $scope.orderById = todoListService.orderById;
+    $scope.orderByTitle = todoListService.orderByTitle;
 
     $scope.changeItemsPerPage = function () {
         todoListService.setItemsPerPage($scope.itemsPerPage);
@@ -88,5 +90,9 @@ angular.module("basicProjectApp")
     $scope.rollbackUpdatingTodo = function (todo) {
         todo.title = $scope.updatingTodo.title;
         $scope.updatingTodo = null;
+    };
+
+    $scope.orderTodos = function (orderFunction) {
+        $scope.todos = orderFunction($scope.todos);
     };
 }]);
