@@ -66,8 +66,15 @@ namespace BasicProject.WebApp
                 "~/Scripts/TodoList/todoListService.js",
                 "~/Scripts/TodoList/todoListController.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/loadFile").Include(
+                "~/Scripts/LoadFile/loadFileService.js",
+                "~/Scripts/LoadFile/loadFileController.js"));
+
             bundles.Add(new StyleBundle("~/Content/css/todoList").Include(
                  "~/Content/todoList.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/loadFile").Include(
+                 "~/Content/loadFile.css"));
         }
     }
 }
