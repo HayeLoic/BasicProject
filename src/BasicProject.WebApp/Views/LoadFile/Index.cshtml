@@ -5,10 +5,19 @@
 <h2>@ViewBag.Title</h2>
 <div ng-controller="loadFileController">
     <h3>Upload a file</h3>
+    <div class="alert alert-success" ng-show="uploadFileResult.successMessage">
+        {{uploadFileResult.successMessage}}
+    </div>
+    <div class="alert alert-danger" ng-show="warningMessage">
+        {{warningMessage}}
+    </div>
+    <div class="alert alert-danger" ng-show="uploadFileResult.errorMessage">
+        {{uploadFileResult.errorMessage}}
+    </div>
     <div class="row">
         <div>
             <label for="upload-file-destination">Uploader le fichier vers : </label>
-            <input id="upload-file-destination"class="form-control" ng-model="uploadFileDestination" />
+            <input id="upload-file-destination" class="form-control" ng-model="uploadFileDestination" disabled />
         </div>
         <input id="uploadFile" name="uploadFile" type="file">
         <button class="btn btn-primary" ng-click="uploadFile()">

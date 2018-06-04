@@ -3,17 +3,21 @@
 angular.module("basicProjectApp")
 .service("loadFileService", ["$http", function ($http) {
     var apiUrls = {
+        getDefaultUploadFileDestination: "api/loadFile/getDefaultUploadFileDestination",
         uploadFile: "api/loadFile/uploadFile"
     };
 
-    var getDefaultUploadFileDestination = function () {
-        return "D:/BasicProject user files";
+    var getDefaultUploadFileDestination = function (callback) {
+        $http.get(apiUrls.getDefaultUploadFileDestination)
+            .then(function (result) {
+                callback(result.data);
+            });
     };
 
     var uploadFile = function (uploadFileDestination, selectedFile, callbackSetResult, callbackResetElement) {
-        var resource = $http.post(url.resolve(apiUrls.uploadFile), selectedFile);
-        resource.then(function (dataResults) {
-            callbackSetResult(dataResults);
+        var resource = $http.post(apiUrls.uploadFile, selectedFile, selectedFile.name);
+        resource.then(function (result) {
+            callbackSetResult(result.data);
             callbackResetElement();
         });
     };

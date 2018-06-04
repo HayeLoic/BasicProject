@@ -19,28 +19,39 @@ namespace BasicProject.WebApp.ApiControllers
             this.fileLoader = fileLoader;
         }
 
+        [Route("getDefaultUploadFileDestination")]
+        [HttpGet]
+        public string GetDefaultUploadFileDestination()
+        {
+
+            return this.fileLoader.GetDefaultUploadFileDestination();
+        }
+
         [Route("uploadFile")]
         [HttpPost]
-        public async Task<string> UploadFile()
+        //public async Task<UploadFileModel> UploadFile()
+        public UploadFileResultModel UploadFile([FromBody] string name)
         {
+            UploadFileResultModel uploadFileResultModel = new UploadFileResultModel();
             try
             {
-                if (!Request.Content.IsMimeMultipartContent())
-                {
-                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-                }
+                //if (!Request.Content.IsMimeMultipartContent())
+                //{
+                //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                //}
 
-                MultipartMemoryStreamProvider provider = new MultipartMemoryStreamProvider();
-                await Request.Content.ReadAsMultipartAsync(provider);
-                Stream stream = provider.Contents[0].ReadAsStreamAsync().Result;
-                this.fileLoader.UploadFile(stream);
-                return "ok";
+                //MultipartMemoryStreamProvider provider = new MultipartMemoryStreamProvider();
+                //await Request.Content.ReadAsMultipartAsync(provider);
+                //Stream stream = provider.Contents[0].ReadAsStreamAsync().Result;
+                Stream stream = this.Request.Content.ReadAsStreamAsync().Result;
+                uploadFileResultModel = this.fileLoader.UploadFile(stream);
             }
             catch (Exception exception)
             {
                 Debug.Write(exception);
-                return "pas ok";
+                uploadFileResultModel.ErrorMessage = exception.Message;
             }
+            return uploadFileResultModel;
         }
     }
 }
