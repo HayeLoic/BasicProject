@@ -5,7 +5,9 @@ angular.module("basicProjectApp")
     $scope.uploadFileDestination = null;
     $scope.uploadFileResult = null;
     $scope.warningMessage = null;
+    var uploadFileToReadStreamId = "uploadFileToReadStream";
     var uploadFileId = "uploadFile";
+    var noFileSelectedWarning = "Aucun fichier n'est séléctionné";
 
     var setUploadFileDestination = function (result) {
         $scope.uploadFileDestination = result;
@@ -19,17 +21,28 @@ angular.module("basicProjectApp")
         $scope.uploadFileResult = result;
     };
 
-    var resetUploader = function () {
+    var resetUploaders = function () {
+        document.getElementById(uploadFileToReadStreamId).value = "";
         document.getElementById(uploadFileId).value = "";
+    };
+
+    $scope.uploadFileToReadStream = function () {
+        var selectedFile = document.getElementById(uploadFileToReadStreamId).files[0];
+        if (selectedFile) {
+            loadFileService.uploadFileToReadStream($scope.uploadFileDestination, selectedFile, setUploadFileResult, resetUploaders);
+
+        } else {
+            $scope.warningMessage = noFileSelectedWarning;
+        }
     };
 
     $scope.uploadFile = function () {
         var selectedFile = document.getElementById(uploadFileId).files[0];
         if (selectedFile) {
-            loadFileService.uploadFile($scope.uploadFileDestination, selectedFile, setUploadFileResult, resetUploader);
-            
+            loadFileService.uploadFile($scope.uploadFileDestination, selectedFile, setUploadFileResult, resetUploaders);
+
         } else {
-            $scope.warningMessage = "Aucun fichier n'est séléctioné";
+            $scope.warningMessage = noFileSelectedWarning;
         }
     };
 

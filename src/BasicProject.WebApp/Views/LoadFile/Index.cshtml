@@ -17,12 +17,24 @@
     <div class="row">
         <div>
             <label for="upload-file-destination">Uploader le fichier vers : </label>
-            <input id="upload-file-destination" class="form-control" ng-model="uploadFileDestination" disabled />
+            <input id="upload-file-destination" class="form-control" ng-model="uploadFileDestination" disabled/>
         </div>
-        <input id="uploadFile" name="uploadFile" type="file">
-        <button class="btn btn-primary" ng-click="uploadFile()">
-            Upload
-        </button>
+        <hr />
+        <div>
+            <h4>Fonction de base qui devrait être utilisée pour lire un stream mais qui est ici utilisée pour copier un fichier avec une destination en dur pour vérifier son bon fonctionnement.</h4>
+            <input id="uploadFileToReadStream" name="uploadFileToReadStream" type="file">
+            <button class="btn btn-primary" ng-click="uploadFileToReadStream()">
+                Upload
+            </button>
+        </div>
+        <hr/>
+        <div>
+            <h4>Fonction permettant la copie d'un fichier, réelle fonction d'upload.</h4>
+            <input id="uploadFile" name="uploadFile" type="file">
+            <button class="btn btn-primary" ng-click="uploadFile()">
+                Upload
+            </button>
+        </div>
     </div>
 </div>
 @Scripts.Render("~/bundles/loadFile")
