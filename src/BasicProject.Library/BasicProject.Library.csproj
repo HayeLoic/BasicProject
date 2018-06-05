@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\FileLoading\FileLoader.cs" />
+    <Compile Include="Business\FileLoading\FileModel.cs" />
     <Compile Include="Business\FileLoading\IFileLoader.cs" />
     <Compile Include="Business\FileLoading\UploadFileResultModel.cs" />
     <Compile Include="Business\IProjectOrchestrator.cs" />

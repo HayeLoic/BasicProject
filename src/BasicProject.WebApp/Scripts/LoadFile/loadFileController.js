@@ -5,6 +5,7 @@ angular.module("basicProjectApp")
     $scope.uploadFileDestination = null;
     $scope.uploadFileResult = null;
     $scope.warningMessage = null;
+    $scope.files = null;
     var uploadFileToReadStreamId = "uploadFileToReadStream";
     var uploadFileId = "uploadFile";
     var noFileSelectedWarning = "Aucun fichier n'est séléctionné";
@@ -24,6 +25,10 @@ angular.module("basicProjectApp")
     var resetUploaders = function () {
         document.getElementById(uploadFileToReadStreamId).value = "";
         document.getElementById(uploadFileId).value = "";
+    };
+
+    var setFiles = function (result) {
+        $scope.files = result;
     };
 
     $scope.uploadFileToReadStream = function () {
@@ -46,5 +51,18 @@ angular.module("basicProjectApp")
         }
     };
 
+    var getFiles = function () {
+        loadFileService.getFiles(setFiles);
+    };
+
+    $scope.thereIsFile = function () {
+        if ($scope.files && $scope.files.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     getDefaultUploadFileDestination();
+    getFiles();
 }]);

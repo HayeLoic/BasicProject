@@ -14,12 +14,12 @@
     <div class="alert alert-danger" ng-show="uploadFileResult.errorMessage">
         {{uploadFileResult.errorMessage}}
     </div>
-    <div class="row">
+    <div>
         <div>
             <label for="upload-file-destination">Uploader le fichier vers : </label>
             <input id="upload-file-destination" class="form-control" ng-model="uploadFileDestination" disabled/>
         </div>
-        <hr />
+        <hr/>
         <div>
             <h4>Fonction de base qui devrait être utilisée pour lire un stream mais qui est ici utilisée pour copier un fichier avec une destination en dur pour vérifier son bon fonctionnement.</h4>
             <input id="uploadFileToReadStream" name="uploadFileToReadStream" type="file">
@@ -35,6 +35,18 @@
                 Upload
             </button>
         </div>
+    </div>
+    <hr />
+    <h3>Download a file</h3>
+    <div>
+        <ul class="list-group">
+            <li ng-repeat="file in files" class="list-group-item"><span class="glyphicon glyphicon-cloud-download"></span><span class="file-name-label">{{file.name}}</span></li>
+        </ul>
+    </div>
+    <div ng-show="!thereIsFile()">
+        <p>
+            Il n'y a aucun fichier dans {{uploadFileDestination}}
+        </p>
     </div>
 </div>
 @Scripts.Render("~/bundles/loadFile")

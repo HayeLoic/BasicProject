@@ -5,7 +5,8 @@ angular.module("basicProjectApp")
     var apiUrls = {
         getDefaultUploadFileDestination: "api/loadFile/getDefaultUploadFileDestination",
         uploadFileToReadStream: "api/loadFile/uploadFileToReadStream",
-        uploadFile: "api/loadFile/uploadFile"
+        uploadFile: "api/loadFile/uploadFile",
+        getFiles: "api/loadFile/getFiles"
     };
 
     var getDefaultUploadFileDestination = function (callback) {
@@ -43,9 +44,17 @@ angular.module("basicProjectApp")
         });
     };
 
+    var getFiles = function (callback) {
+        $http.get(apiUrls.getFiles)
+            .then(function (result) {
+                callback(result.data);
+            });
+    };
+
     return {
         getDefaultUploadFileDestination: getDefaultUploadFileDestination,
         uploadFileToReadStream: uploadFileToReadStream,
-        uploadFile: uploadFile
+        uploadFile: uploadFile,
+        getFiles: getFiles
     };
 }]);

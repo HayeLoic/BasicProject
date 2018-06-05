@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace BasicProject.Library.Business.FileLoading
 {
@@ -36,6 +38,25 @@ namespace BasicProject.Library.Business.FileLoading
             }
             uploadFileResultModel.SuccessMessage = "Fichier uploadé";
             return uploadFileResultModel;
+        }
+
+        public IEnumerable<FileModel> GetFiles(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
+                return directoryInfo
+                    .GetFiles()
+                    .Select(fileInfo => new FileModel
+                    {
+                        Name = fileInfo.Name,
+                        FullPath = fileInfo.FullName
+                    }).ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

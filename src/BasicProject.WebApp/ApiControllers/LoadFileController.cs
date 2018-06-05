@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -55,7 +56,7 @@ namespace BasicProject.WebApp.ApiControllers
                 {
                     throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
                 }
-                
+
                 MultipartMemoryStreamProvider provider = new MultipartMemoryStreamProvider();
                 await Request.Content.ReadAsMultipartAsync(provider);
                 Stream stream = provider.Contents[0].ReadAsStreamAsync().Result;
@@ -71,6 +72,21 @@ namespace BasicProject.WebApp.ApiControllers
                 uploadFileResultModel.ErrorMessage = exception.Message;
             }
             return uploadFileResultModel;
+        }
+
+        [Route("getFiles")]
+        [HttpGet]
+        public IEnumerable<FileModel> GetFiles()
+        {
+            try
+            {
+                return this.fileLoader.GetFiles(this.fileLoader.GetDefaultUploadFileDestination());
+            }
+            catch (Exception exception)
+            {
+                Debug.Write(exception);
+                return null;
+            }
         }
     }
 }
