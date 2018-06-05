@@ -1,0 +1,11 @@
+﻿.file-name-label {
+    margin-left: 10px;
+}
+
+    .file-name-label:hover {
+        cursor: pointer;
+    }
+
+.file-download-icon:hover {
+    cursor: pointer;
+}

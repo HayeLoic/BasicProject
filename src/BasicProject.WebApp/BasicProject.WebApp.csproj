@@ -231,6 +231,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\LoadFileController.cs" />
     <Compile Include="ApiControllers\TodoListController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -270,6 +271,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
@@ -294,6 +296,7 @@
     <None Include="Content\custom-pagination.less" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\loadFile.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\todoList.css" />
     <Content Include="favicon.ico" />
@@ -316,6 +319,8 @@
     <Content Include="Scripts\Common\CustomModal\customModal.js" />
     <Content Include="Scripts\Common\StartFrom\startFrom.js" />
     <Content Include="Scripts\less.min.js" />
+    <Content Include="Scripts\LoadFile\loadFileController.js" />
+    <Content Include="Scripts\LoadFile\loadFileService.js" />
     <Content Include="Scripts\Sample\sample.html" />
     <Content Include="Scripts\TodoList\todoListController.js" />
     <Content Include="Scripts\Sample\sampleDirective.js" />
@@ -409,6 +414,7 @@
     </Content>
     <Content Include="Views\TodoList\Index.cshtml" />
     <Content Include="Views\Sample\Index.cshtml" />
+    <Content Include="Views\LoadFile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
