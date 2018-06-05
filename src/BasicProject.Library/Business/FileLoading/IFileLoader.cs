@@ -9,5 +9,7 @@ namespace BasicProject.Library.Business.FileLoading
         UploadFileResultModel UploadFile(Stream stream);
         UploadFileResultModel UploadFile(Stream stream, string destinationFolder, string fileName);
         IEnumerable<FileModel> GetFiles(string folderPath);
+        FileModel GetFile(int fileId, string folderPath);
+        Stream GetStream(int fileId, string folderPath);
     }
 }

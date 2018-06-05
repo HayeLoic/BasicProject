@@ -42,20 +42,42 @@ namespace BasicProject.Library.Business.FileLoading
 
         public IEnumerable<FileModel> GetFiles(string folderPath)
         {
+            List<FileModel> fileModels = new List<FileModel>();
             if (Directory.Exists(folderPath))
             {
+                int fileModelId = 1;
                 DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
-                return directoryInfo
-                    .GetFiles()
-                    .Select(fileInfo => new FileModel
+                foreach (FileInfo fileInfo in directoryInfo.GetFiles())
+                {
+                    fileModels.Add(new FileModel
                     {
+                        Id = fileModelId,
                         Name = fileInfo.Name,
                         FullPath = fileInfo.FullName
-                    }).ToList();
+                    });
+                    fileModelId++;
+                }
+            }
+            return fileModels;
+        }
+
+        public FileModel GetFile(int fileId, string folderPath)
+        {
+            return this.GetFiles(folderPath).FirstOrDefault(fileModel => fileModel.Id == fileId);
+        }
+
+        public Stream GetStream(int fileId, string folderPath)
+        {
+            FileModel fileModel = this.GetFile(fileId, folderPath);
+
+            if (fileModel != null && File.Exists(fileModel.FullPath))
+            {
+                byte[] fileBytes = File.ReadAllBytes(fileModel.FullPath);
+                return new MemoryStream(fileBytes);
             }
             else
             {
-                return null;
+                return Stream.Null;
             }
         }
     }

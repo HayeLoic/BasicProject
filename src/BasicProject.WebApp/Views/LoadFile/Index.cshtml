@@ -40,7 +40,10 @@
     <h3>Download a file</h3>
     <div>
         <ul class="list-group">
-            <li ng-repeat="file in files" class="list-group-item"><span class="glyphicon glyphicon-cloud-download"></span><span class="file-name-label">{{file.name}}</span></li>
+            <li ng-repeat="file in files" class="list-group-item">
+                <span class="glyphicon glyphicon-cloud-download file-download-icon" ng-click="downloadFile(file)"></span>
+                <span class="file-name-label" ng-click="downloadFile(file)">{{file.name}}</span>
+            </li>
         </ul>
     </div>
     <div ng-show="!thereIsFile()">

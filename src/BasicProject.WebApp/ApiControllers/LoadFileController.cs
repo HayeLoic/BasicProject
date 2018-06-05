@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using BasicProject.Library.Business.FileLoading;
@@ -86,6 +87,34 @@ namespace BasicProject.WebApp.ApiControllers
             {
                 Debug.Write(exception);
                 return null;
+            }
+        }
+
+        [Route("downloadFile/{fileId}")]
+        [HttpGet]
+        public HttpResponseMessage DownloadFile(int fileId)
+        {
+            try
+            {
+                FileModel fileModel = this.fileLoader.GetFile(fileId, this.fileLoader.GetDefaultUploadFileDestination());
+                Stream stream = this.fileLoader.GetStream(fileId, this.fileLoader.GetDefaultUploadFileDestination());
+
+                HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StreamContent(stream)
+                };
+                httpResponseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                httpResponseMessage.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = fileModel.Name
+                };
+
+                return httpResponseMessage;
+            }
+            catch (Exception exception)
+            {
+                Debug.Write(exception);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception.Message);
             }
         }
     }

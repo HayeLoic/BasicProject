@@ -63,6 +63,10 @@ angular.module("basicProjectApp")
         }
     };
 
+    $scope.downloadFile = function (file) {
+        loadFileService.downloadFile(file);
+    };
+
     getDefaultUploadFileDestination();
     getFiles();
 }]);

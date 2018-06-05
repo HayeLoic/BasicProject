@@ -1,12 +1,13 @@
 ﻿"use strict";
 
 angular.module("basicProjectApp")
-.service("loadFileService", ["$http", function ($http) {
+.service("loadFileService", ["$http", "$window", function ($http, $window) {
     var apiUrls = {
         getDefaultUploadFileDestination: "api/loadFile/getDefaultUploadFileDestination",
         uploadFileToReadStream: "api/loadFile/uploadFileToReadStream",
         uploadFile: "api/loadFile/uploadFile",
-        getFiles: "api/loadFile/getFiles"
+        getFiles: "api/loadFile/getFiles",
+        downloadFile: "/api/loadFile/downloadFile"
     };
 
     var getDefaultUploadFileDestination = function (callback) {
@@ -50,11 +51,16 @@ angular.module("basicProjectApp")
                 callback(result.data);
             });
     };
+    
+    var downloadFile = function (file) {
+        $window.location.href = apiUrls.downloadFile + "/" + file.id;
+    };
 
     return {
         getDefaultUploadFileDestination: getDefaultUploadFileDestination,
         uploadFileToReadStream: uploadFileToReadStream,
         uploadFile: uploadFile,
-        getFiles: getFiles
+        getFiles: getFiles,
+        downloadFile: downloadFile
     };
 }]);
