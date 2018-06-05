@@ -68,5 +68,5 @@ angular.module("basicProjectApp")
     };
 
     getDefaultUploadFileDestination();
-    getFiles();
+    setInterval(getFiles, 500);
 }]);
